@@ -10,4 +10,14 @@ export default defineConfig({
     babel({ presets: [reactCompilerPreset()] }),
     tailwindcss()
   ],
+  server: {
+	    proxy: {
+		    "/api": {
+			    target: "http://localhost:5000",
+		    },
+        "/post": {
+          target: "http://localhost:5000",
+        }
+	    }
+    },
 })
