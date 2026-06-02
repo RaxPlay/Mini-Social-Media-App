@@ -19,6 +19,16 @@ postRouter.post("/new-post", protect, async (req, res) => {
   }
 });
 
+postRouter.get("/get-posts", protect, async (req, res) => {
+  try {
+    const posts = await pool.query("SELECT * FROM post");
+
+    res.status(200).json(posts);
+  } catch (error) {
+    console.error(error.message)
+  }
+})
+
 postRouter.delete("/delete-post/:post_id", protect, async(req, res) => {
   try {
     const { post_id } = req.params;

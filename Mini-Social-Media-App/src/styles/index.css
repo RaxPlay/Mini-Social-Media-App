@@ -18,6 +18,10 @@ h2{
   font-size: 1.7rem;
 }
 
+span{
+  color: #685634;
+}
+
 input{
   border: 2px solid var(--border);
   border-radius: 6px;
@@ -78,6 +82,17 @@ button:hover{
   background-color: var(--home-background);
   min-width: 400px;
   height: 100%;
+}
+
+#like-button{
+  border: none;
+  padding: 0;
+  margin-right: 2px;
+}
+
+#like-button:hover{
+  color: rgb(176, 82, 82);
+  background-color: transparent;
 }
 
 .dropdown {

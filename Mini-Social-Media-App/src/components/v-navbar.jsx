@@ -49,14 +49,14 @@ export const NavBar = ({ user, setUser }) => {
 
               <button className="my-3">
                 <Link to="/login">
-                  <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                  <i className="fa-solid fa-arrow-right-to-bracket"></i>
                 </Link>
               </button>
 
               <div>
                 <button>
                   <Link to="/signup">
-                    <i class="fa-solid fa-user-plus"></i>
+                    <i className="fa-solid fa-user-plus"></i>
                   </Link>
                 </button>
               </div>
