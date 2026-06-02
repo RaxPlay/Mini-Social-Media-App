@@ -4,6 +4,7 @@
   --background: #352208;
   --text-color: #E1BB80;
   --container-background: #685634;
+  --home-background: #553c19;
   --border: #806443;
 }
 
@@ -60,7 +61,6 @@ button:hover{
   padding: 0px;
   border: 2px solid var(--border);
   border-radius: 6px;
-  width: 300px;
   min-height: fit-content;
   text-align: center;
 }
@@ -73,6 +73,13 @@ button:hover{
   text-align: center;
   width: 60px;
   padding: 10px 0px;
+}
+
+#home-display{
+  border: 1px solid var(--container-background);
+  background-color: var(--home-background);
+  min-width: 400px;
+  height: 100%;
 }
 
 .dropdown {
