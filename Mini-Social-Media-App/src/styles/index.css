@@ -58,9 +58,7 @@ button:hover{
 
 #container{
   background-color: var(--container-background);
-  padding: 0px;
   border: 2px solid var(--border);
-  border-radius: 6px;
   min-height: fit-content;
   text-align: center;
 }
