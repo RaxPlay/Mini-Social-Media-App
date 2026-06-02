@@ -24,7 +24,7 @@ export const Signup = ({ user, setUser }) => {
 
   return (
     <div className="flex justify-center items-center h-100">
-      <form id="container" onSubmit={signupFunc}>
+      <form id="container" className="w-75" onSubmit={signupFunc}>
         <h2 className="bg-[#8f723b] p-2">Sign-Up</h2>
 
         <div className="p-3 my-4">

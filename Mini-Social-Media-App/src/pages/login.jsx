@@ -22,7 +22,7 @@ export const Login = ({ user, setUser }) => {
 
   return (
     <div className="flex justify-center items-center h-100">
-      <form id="container" onSubmit={loginFunc}>
+      <form id="container" className="w-75" onSubmit={loginFunc}>
         <h2 className="bg-[#8f723b] p-2">Log-In</h2>
 
         <div className="p-3 my-4">
