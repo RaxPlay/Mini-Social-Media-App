@@ -38,7 +38,7 @@ postRouter.get("/users-profile/:user_id", protect, async (req, res) => {
   try {
     const { user_id } = req.params;
 
-    const userInfo = await pool.query("SELECT username, post_count, id FROM users",);
+    const userInfo = await pool.query("SELECT username, post_count, id FROM users WHERE id = $1", [user_id]);
 
     res.status(200).json(userInfo.rows)
   } catch (error) {
@@ -46,12 +46,12 @@ postRouter.get("/users-profile/:user_id", protect, async (req, res) => {
   }
 });
 
-//Get posts from specific user
+//Get posts from specific
 postRouter.get("/users-posts/:user_id", protect, async (req, res) => {
   try {
     const { user_id } = req.params;
 
-    const userPosts = await pool.query("SELECT * FROM post");
+    const userPosts = await pool.query("SELECT post_description, post_id, date_of_creation, user_name, like_count FROM post WHERE user_id = $1", [user_id]);
 
     res.status(200).json(userPosts.rows)
   } catch (error) {

@@ -33,7 +33,7 @@ export const Profile = () => {
       <div id="profile-display">
         {profileInfo.map((profile) => (
           <div className="text-center mt-2" key={profile.id}>
-            <h2>@{profile.username}</h2>
+            <h2>{profile.username}</h2>
 
             <div className="flex justify-center gap-2">
               <span>Has posted: </span> <p>{profile.post_count} posts</p>
