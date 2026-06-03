@@ -77,7 +77,7 @@ button:hover{
   padding: 10px 0px;
 }
 
-#home-display{
+#home-display, #profile-display{
   border: 1px solid var(--container-background);
   background-color: var(--home-background);
   min-width: 400px;

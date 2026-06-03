@@ -9,10 +9,14 @@ export const Signup = ({ user, setUser }) => {
     email: "",
     password: "",
     date_of_birth: "",
+    post_count: 0
   });
 
   const signupFunc = async (e) => {
     e.preventDefault();
+    if(signupForm.username === "" || signupForm.email === "" || signupForm.password === "" || signupForm.date_of_birth === "") {
+      return alert("Please insert your information in all the fields")
+    }
     try {
       const res = await axios.post("/api/auth/signup", signupForm);
       setUser(res.data);

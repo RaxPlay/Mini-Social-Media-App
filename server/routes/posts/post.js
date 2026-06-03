@@ -6,11 +6,16 @@ const postRouter = express.Router();
 
 postRouter.post("/new-post", protect, async (req, res) => {
   try {
-    const { post_description, like_count } = req.body; //Like count should start on 0
+    const { post_description, like_count } = req.body;
 
     const newPost = await pool.query(
       "INSERT INTO post(post_description, like_count, user_name, user_id) VALUES($1, $2, $3, $4) RETURNING *",
       [post_description, like_count, req.user.username, req.user.id],
+    );
+
+    await pool.query(
+      "UPDATE users SET post_count = post_count + 1 WHERE id = $1",
+      [req.user.id],
     );
 
     res.status(201).json(newPost.rows[0]);
@@ -25,19 +30,48 @@ postRouter.get("/get-posts", protect, async (req, res) => {
 
     res.status(200).json(posts);
   } catch (error) {
-    console.error(error.message)
+    console.error(error.message);
   }
-})
+});
 
-postRouter.delete("/delete-post/:post_id", protect, async(req, res) => {
+postRouter.get("/users-profile/:user_id", protect, async (req, res) => {
   try {
-    const { post_id } = req.params;
+    const { user_id } = req.params;
 
-    await pool.query("DELETE FROM post WHERE post_id = $1", [post_id])
+    const userInfo = await pool.query("SELECT username, post_count, id FROM users",);
 
+    res.status(200).json(userInfo.rows)
   } catch (error) {
     console.error(error.message);
   }
-})
+});
+
+//Get posts from specific user
+postRouter.get("/users-posts/:user_id", protect, async (req, res) => {
+  try {
+    const { user_id } = req.params;
+
+    const userPosts = await pool.query("SELECT * FROM post");
+
+    res.status(200).json(userPosts.rows)
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
+postRouter.delete("/delete-post/:post_id", protect, async (req, res) => {
+  try {
+    const { post_id } = req.params;
+
+    await pool.query("DELETE FROM post WHERE post_id = $1", [post_id]);
+
+    await pool.query(
+      "UPDATE users SET post_count = post_count - 1 WHERE id = $1",
+      [req.user.id],
+    );
+  } catch (error) {
+    console.error(error.message);
+  }
+});
 
 export default postRouter;

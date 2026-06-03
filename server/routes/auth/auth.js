@@ -22,7 +22,7 @@ const generateToken = (id) => {
 
 //Register
 router.post("/signup", async (req, res) => {
-  const { username, email, password, date_of_birth } = req.body;
+  const { username, email, password, date_of_birth, post_count } = req.body;
 
   if (!username || !email || !password || !date_of_birth) {
     return res.status(400).json({ message: "Provide required fields" });
@@ -30,7 +30,7 @@ router.post("/signup", async (req, res) => {
 
   const userExists = await pool.query(
     "SELECT * FROM users WHERE email = $1 OR username = $2",
-    [email, username]
+    [email, username],
   );
 
   if (userExists.rows.length > 0) {
@@ -40,8 +40,8 @@ router.post("/signup", async (req, res) => {
   const hashedPassword = await bcrypt.hash(password, 10);
 
   const newUser = await pool.query(
-    "INSERT INTO users(username, email, password, date_of_birth) VALUES ($1, $2, $3, $4) RETURNING id, username, email, date_of_birth",
-    [username, email, hashedPassword, date_of_birth],
+    "INSERT INTO users(username, email, password, date_of_birth, post_count) VALUES ($1, $2, $3, $4, $5) RETURNING id, username, email, date_of_birth, post_count",
+    [username, email, hashedPassword, date_of_birth, post_count],
   );
 
   const token = generateToken(newUser.rows[0].id);

@@ -5,6 +5,7 @@ import { NavBar } from './components/v-navbar'
 import { Home } from './pages/home'
 import { Login } from './pages/login'
 import { Signup } from './pages/signup'
+import { Profile } from './pages/other-profiles'
 
 axios.defaults.withCredentials = true;
 
@@ -38,6 +39,7 @@ export const App = () => {
 
       <Routes>
         <Route path='/home' element={<Home user={user} setUser={setUser}/>}/>
+        <Route path='/profile/:user_id' element={<Profile/>}/>
         <Route path='/login' element={<Login user={user} setUser={setUser}/>}/>
         <Route path='/signup' element={<Signup user={user} setUser={setUser}/>}/>
         <Route path="/*" element={<Navigate to="/home"/>}></Route>  

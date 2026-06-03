@@ -12,10 +12,15 @@ export const Home = ({ user, setUser }) => {
 
   const newPost = async (e) => {
     e.preventDefault();
-    try {
-      const newPost = await axios.post("/post/new-post", postForm);
-    } catch (error) {
-      console.error(error);
+    if (postForm.post_description === "") {
+      return alert("Can't post and empty comment");
+    } else {
+      try {
+        const newPost = await axios.post("/post/new-post", postForm);
+        location.reload()
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
@@ -36,6 +41,7 @@ export const Home = ({ user, setUser }) => {
                       post_description: e.target.value,
                     });
                   }}
+                  required
                   className="w-57"
                 />
                 <button onClick={newPost}>
@@ -44,12 +50,12 @@ export const Home = ({ user, setUser }) => {
               </form>
             </div>
 
-            <div id="post-display">
+            <div id="post-display" className="mt-2">
               <PostsDisplay user={user} />
             </div>
           </div>
         ) : (
-          <div id="post-display" className="h-full flex justify-center items-center">
+          <div id="post-display" className="flex justify-center items-center">
             <Link to="/login">
               <h2 className="hover:underline">Please Login First</h2>
             </Link>
