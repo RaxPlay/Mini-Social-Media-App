@@ -25,7 +25,7 @@ export const PostsDisplay = ({ user }) => {
         <div key={post.post_id}>
           <div className="p-1">
             <div className="flex justify-between">
-              <Link to={`/profile/${post.user_id}`} >
+              <Link to={`/profile/${post.user_name}`} >
                 <p className="hover:underline hover:cursor-pointer">
                   @{post.user_name}
                 </p>

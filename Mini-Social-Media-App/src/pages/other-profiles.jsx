@@ -3,16 +3,16 @@ import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 
 export const Profile = () => {
-  const { user_id } = useParams();
+  const { user_name } = useParams();
   const [profileInfo, setProfileInfo] = useState([]);
   const [profilePosts, setProfilePosts] = useState([]);
 
   const getProfileInfo = async () => {
     try {
-      const profile = await axios.get(`/post/users-profile/${user_id}`);
+      const profile = await axios.get(`/post/users-profile/${user_name}`);
       setProfileInfo(profile.data);
 
-      const posts = await axios.get(`/post/users-posts/${user_id}`);
+      const posts = await axios.get(`/post/users-posts/${user_name}`);
       setProfilePosts(posts.data);
     } catch (error) {
       console.error(error);
@@ -22,12 +22,7 @@ export const Profile = () => {
   useEffect(() => {
     getProfileInfo();
   }, []);
-
-  console.log(profileInfo);
-  console.log("-----")
-  console.log(profilePosts);
-  console.log("-----")
-
+  
   return (
     <div className="h-screen flex justify-center">
       <div id="profile-display">

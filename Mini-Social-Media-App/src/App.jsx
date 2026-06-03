@@ -39,7 +39,7 @@ export const App = () => {
 
       <Routes>
         <Route path='/home' element={<Home user={user} setUser={setUser}/>}/>
-        <Route path='/profile/:user_id' element={<Profile/>}/>
+        <Route path='/profile/:user_name' element={<Profile/>}/>
         <Route path='/login' element={<Login user={user} setUser={setUser}/>}/>
         <Route path='/signup' element={<Signup user={user} setUser={setUser}/>}/>
         <Route path="/*" element={<Navigate to="/home"/>}></Route>  
