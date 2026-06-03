@@ -22,12 +22,20 @@ export const NavBar = ({ user, setUser }) => {
 
             <div className="dropdown-content rounded-b-lg">
               <button>
-                <Link to="/home">
-                  <i className="fa-solid fa-home"></i>
+                <Link to="/your-profile">
+                  <i className="fa-solid fa-user"></i>
                 </Link>
               </button>
 
-              <div className="mt-3">
+              <div className="my-3">
+                <button>
+                  <Link to="/home">
+                    <i className="fa-solid fa-home"></i>
+                  </Link>
+                </button>
+              </div>
+
+              <div>
                 <button className="logout-button" onClick={logoutFunc}>
                   <i className="fa-solid fa-arrow-right-from-bracket"></i>
                 </button>

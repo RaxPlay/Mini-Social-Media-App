@@ -6,6 +6,7 @@ import { Home } from './pages/home'
 import { Login } from './pages/login'
 import { Signup } from './pages/signup'
 import { Profile } from './pages/other-profiles'
+import { YourPage } from './pages/personal-page'
 
 axios.defaults.withCredentials = true;
 
@@ -39,6 +40,7 @@ export const App = () => {
 
       <Routes>
         <Route path='/home' element={<Home user={user} setUser={setUser}/>}/>
+        <Route path='/your-profile' element={<YourPage user={user}/>}></Route>
         <Route path='/profile/:user_name' element={<Profile/>}/>
         <Route path='/login' element={<Login user={user} setUser={setUser}/>}/>
         <Route path='/signup' element={<Signup user={user} setUser={setUser}/>}/>

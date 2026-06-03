@@ -48,14 +48,14 @@ button:hover{
   border: 2px solid var(--text-color);
 }
 
-.logout-button{
+.logout-button, .delete-button{
   border: 2px solid rgb(176, 82, 82);
   background-color: rgb(134, 43, 43);
   border-radius: 6px;
   padding: 2px 8px;
 }
 
-.logout-button:hover{
+.logout-button:hover, .delete-button:hover{
   background-color: rgb(176, 82, 82);
   border: 2px solid rgb(217, 133, 133);
 }
