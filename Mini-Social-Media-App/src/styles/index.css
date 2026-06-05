@@ -28,6 +28,10 @@ input{
   padding: 2px 6px;
 }
 
+input:focus {
+  outline:none;
+}
+
 i{
   font-size: 1rem;
   width: 20px;
@@ -48,14 +52,14 @@ button:hover{
   border: 2px solid var(--text-color);
 }
 
-.logout-button, .delete-button{
+.logout-button, .delete-button, .close-modal-button{
   border: 2px solid rgb(176, 82, 82);
   background-color: rgb(134, 43, 43);
   border-radius: 6px;
   padding: 2px 8px;
 }
 
-.logout-button:hover, .delete-button:hover{
+.logout-button:hover, .delete-button:hover, .close-modal-button:hover{
   background-color: rgb(176, 82, 82);
   border: 2px solid rgb(217, 133, 133);
 }
@@ -84,15 +88,45 @@ button:hover{
   height: 100%;
 }
 
-#like-button{
+#comment-button{
   border: none;
   padding: 0;
   margin-right: 2px;
+
+  transition: 0.3s;
 }
 
-#like-button:hover{
-  color: rgb(176, 82, 82);
+#comment-button:hover{
+  color: rgb(119, 84, 54);
   background-color: transparent;
+}
+
+#comment-displayer span{
+  color: var(--home-background);
+}
+
+#modal {
+  display: none;
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%;
+  overflow: auto; 
+  background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+  background-color: var(--container-background);
+  box-shadow: 2px 2px 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  margin: 15% auto; 
+  padding: 10px 14px;
+  width: 30%;
+  height: fit-content;
+  
 }
 
 .dropdown {

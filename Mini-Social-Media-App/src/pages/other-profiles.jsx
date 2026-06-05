@@ -47,13 +47,7 @@ export const Profile = () => {
               </Link>{" "}
               <span>{post.date_of_creation}</span>
             </div>
-            <div>{post.post_description}</div>
-            <div className="mt-2">
-              <button id="like-button">
-                <i className="fa-solid fa-heart"></i>
-              </button>
-              {post.like_count}
-            </div>
+            <div className="mb-2">{post.post_description}</div>
           </div>
 
           <hr />

@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 export const Home = ({ user, setUser }) => {
   const [postForm, setPostForm] = useState({
     post_description: "",
-    like_count: 0,
   });
 
   const newPost = async (e) => {

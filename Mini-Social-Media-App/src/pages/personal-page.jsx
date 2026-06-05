@@ -4,8 +4,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 export const YourPage = ({ user }) => {
-  console.log(user);
-
   const [profileInfo, setProfileInfo] = useState([]);
   const [profilePosts, setProfilePosts] = useState([]);
 
@@ -21,14 +19,14 @@ export const YourPage = ({ user }) => {
     }
   };
 
-  const deletePost = async(post_id) => {
+  const deletePost = async (post_id) => {
     try {
-      await axios.delete(`/post/delete-post/${post_id}`)
-      profileInfo.filter(post => post.id !== post_id);
+      await axios.delete(`/post/delete-post/${post_id}`);
+      profileInfo.filter((post) => post.id !== post_id);
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   useEffect(() => {
     getProfileInfo();
@@ -58,14 +56,12 @@ export const YourPage = ({ user }) => {
                 </Link>{" "}
                 <span>{post.date_of_creation}</span>
               </div>
-              <div>{post.post_description}</div>
-              <div className="mt-2 flex justify-between ">
-                <button id="like-button">
-                  <i className="fa-solid fa-heart"></i>
-                  {post.like_count}
-                </button>
-
-                <button className="delete-button" onClick={() => deletePost(post.post_id)}>
+              <div className="flex justify-between mb-2">
+                {post.post_description}
+                <button
+                  className="delete-button mt-1"
+                  onClick={() => deletePost(post.post_id)}
+                >
                   <i className="fa-solid fa-trash"></i>
                 </button>
               </div>
