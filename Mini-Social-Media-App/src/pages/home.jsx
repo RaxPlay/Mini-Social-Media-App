@@ -12,7 +12,7 @@ export const Home = ({ user, setUser }) => {
   const newPost = async (e) => {
     e.preventDefault();
     if (postForm.post_description === "") {
-      return alert("Can't post and empty comment");
+      return alert("Can't post an empty post");
     } else {
       try {
         const newPost = await axios.post("/post/new-post", postForm);
