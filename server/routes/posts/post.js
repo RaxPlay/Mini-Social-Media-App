@@ -103,7 +103,9 @@ postRouter.delete("/delete-post/:post_id", protect, async (req, res) => {
   try {
     const { post_id } = req.params;
 
-    await pool.query("DELETE FROM commentaries WHERE post = $1", [post_id]);
+    await pool.query("DELETE FROM commentaries WHERE comentary_id = $1", [
+      post_id,
+    ]);
 
     await pool.query("DELETE FROM post WHERE post_id = $1", [post_id]);
 
@@ -111,6 +113,18 @@ postRouter.delete("/delete-post/:post_id", protect, async (req, res) => {
       "UPDATE users SET post_count = post_count - 1 WHERE id = $1",
       [req.user.id],
     );
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
+postRouter.delete("/delete-comment/:commentary_id", protect, async (req, res) => {
+  try {
+    const { commentary_id } = req.params;
+
+    await pool.query("DELETE FROM commentaries WHERE commentary_id = $1", [
+      commentary_id,
+    ]);
   } catch (error) {
     console.error(error.message);
   }

@@ -41,15 +41,30 @@ export const PostsDisplay = ({ user }) => {
 
   const newComment = async (post_id) => {
     try {
+      if(commentForm === ""){
+        return alert("Can't post an empty comment")
+      }
+
       const body = { post_id: post_id, comment_description: commentForm };
 
       console.log(post_id);
 
       await axios.post(`/post/new-comment`, body);
+
+      location.reload();
     } catch (error) {
       console.error(error);
     }
   };
+
+  const deleteComment = async(comment_id) => {
+    try {
+      await axios.delete(`/post/delete-comment/${comment_id}`)
+      commentDisplay.filter(comment => comment.commentary_id !== comment_id);
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   useEffect(() => {
     getPosts();
@@ -96,20 +111,39 @@ export const PostsDisplay = ({ user }) => {
                   </button>
                 </div>
 
-                <hr className="my-2" />
+                <hr className="mt-4 mb-2" />
 
                 <div id="comment-displayer">
                   {commentDisplay.map((comment) => (
-                    <div key={comment.comentary_id}>
-                      <div className="flex justify-between">
-                        <Link to={`/profile/${comment.comentator}`}>
-                          <p className="hover:underline hover:cursor-pointer">
-                            @{comment.comentator}
-                          </p>
-                        </Link>{" "}
-                        <span>{comment.date_of_creation}</span>
-                      </div>
-                      <p className="ml-3">{comment.comment_description}</p>
+                    <div key={comment.commentary_id}>
+                      {user.username === comment.comentator ? (
+                        <div>
+                          <div className="flex justify-between">
+                            <Link to={`/profile/${comment.comentator}`}>
+                              <p className="hover:underline hover:cursor-pointer">
+                                @{comment.comentator}
+                              </p>
+                            </Link>{" "}
+                            <span>{comment.date_of_creation}</span>
+                          </div>
+                          <p className="ml-3">{comment.comment_description}</p>
+                          <button onClick={() => deleteComment(comment.commentary_id)} className="delete-button ml-2 mt-1">
+                            <i className="fa-solid fa-trash"></i>
+                          </button>
+                        </div>
+                      ) : (
+                        <div>
+                          <div className="flex justify-between">
+                            <Link to={`/profile/${comment.comentator}`}>
+                              <p className="hover:underline hover:cursor-pointer">
+                                @{comment.comentator}
+                              </p>
+                            </Link>{" "}
+                            <span>{comment.date_of_creation}</span>
+                          </div>
+                          <p className="ml-3">{comment.comment_description}</p>
+                        </div>
+                      )}
 
                       <hr className="my-2" />
                     </div>

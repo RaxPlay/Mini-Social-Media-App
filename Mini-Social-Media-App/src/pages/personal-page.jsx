@@ -23,6 +23,7 @@ export const YourPage = ({ user }) => {
     try {
       await axios.delete(`/post/delete-post/${post_id}`);
       profileInfo.filter((post) => post.id !== post_id);
+      return alert("Post deleted!")
     } catch (error) {
       console.error(error);
     }
